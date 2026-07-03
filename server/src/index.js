@@ -73,7 +73,16 @@ const handleRedirect = async (req, res, next) => {
       where: { OR: [{ shortCode: code }, { customAlias: code }] }
     })
 
-    if (!url) return res.status(404).json({ error: 'Short URL not found' })
+    if (!url) {
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0')
+      return res.status(404).send(`
+        <!DOCTYPE html>
+        <html>
+        <head><title>Link Not Found</title><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>body{background:#eceae4;color:#15141c;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}.card{background:#fff;border:1px solid rgba(20,20,28,0.08);border-radius:24px;padding:48px;text-align:center;box-shadow:0 32px 80px rgba(20,20,28,0.08);max-width:400px}h1{color:#ef4444;margin-top:0}p{color:#8d8b94;line-height:1.5}</style></head>
+        <body><div class="card"><h1>Link Not Found</h1><p>This short link does not exist or has been deleted by its creator.</p></div></body></html>
+      `)
+    }
 
     if (url.expiresAt && new Date() > url.expiresAt) {
       return res.status(410).send(`
