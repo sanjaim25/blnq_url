@@ -93,15 +93,41 @@ export default function Analytics() {
   const [loading, setLoading] = useState(true)
   const [chartRange, setChartRange] = useState('30d') // '7d' | '30d'
 
-  useEffect(() => {
+  // Function to fetch analytics data
+  const fetchAnalytics = () => {
+    // Add timestamp to prevent caching
     Promise.all([
-      api.get('/api/analytics/overview'),
-      api.get('/api/urls')
+      api.get(`/api/analytics/overview?_t=${Date.now()}`),
+      api.get(`/api/urls?_t=${Date.now()}`)
     ]).then(([ov, ul]) => {
       setData(ov.data)
       setUrls(ul.data)
     }).catch(() => toast.error('Failed to load analytics'))
       .finally(() => setLoading(false))
+  }
+
+  // Initial load
+  useEffect(() => {
+    fetchAnalytics()
+  }, [])
+
+  // Auto-refresh every 3 seconds for live updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Refresh without showing loading state, add timestamp to prevent caching
+      Promise.all([
+        api.get(`/api/analytics/overview?_t=${Date.now()}`),
+        api.get(`/api/urls?_t=${Date.now()}`)
+      ]).then(([ov, ul]) => {
+        setData(ov.data)
+        setUrls(ul.data)
+      }).catch(() => {
+        // Silently fail - don't show error on auto-refresh
+      })
+    }, 3000) // Refresh every 3 seconds (reduced from 5)
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval)
   }, [])
 
   const total = data?.totalClicks || 0

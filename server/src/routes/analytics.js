@@ -8,6 +8,11 @@ const prisma = new PrismaClient()
 /* ── GET /api/analytics/overview — aggregate stats for the whole user account ── */
 router.get('/overview', authenticate, async (req, res) => {
   try {
+    // Prevent caching for live updates
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+    res.setHeader('Pragma', 'no-cache')
+    res.setHeader('Expires', '0')
+
     const urls = await prisma.url.findMany({
       where: { userId: req.userId },
       include: { visits: { orderBy: { visitedAt: 'desc' } } }
@@ -105,6 +110,11 @@ router.get('/overview', authenticate, async (req, res) => {
 /* ── GET /api/analytics/:id — per-link stats ── */
 router.get('/:id', authenticate, async (req, res) => {
   try {
+    // Prevent caching for live updates
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+    res.setHeader('Pragma', 'no-cache')
+    res.setHeader('Expires', '0')
+
     const url = await prisma.url.findUnique({
       where: { id: req.params.id },
       include: { visits: { orderBy: { visitedAt: 'desc' }, take: 20 } }

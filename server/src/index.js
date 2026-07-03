@@ -25,10 +25,10 @@ app.set('trust proxy', 1)
 //    since the password form POSTs from the Render domain itself which isn't in CLIENT_URL)
 const allowedOrigins = process.env.CLIENT_URL 
   ? process.env.CLIENT_URL.split(',').map(url => url.trim().replace(/\/$/, '')) 
-  : ['http://localhost:5173', 'https://tinyhop-url.vercel.app']
+  : ['http://localhost:5173', 'http://localhost:5174', 'https://tinyhop-url.vercel.app']
 const corsMiddleware = cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin) || /^http:\/\/(localhost|127\.0\.0\.1):[0-9]+$/.test(origin)) {
       callback(null, true)
     } else {
       callback(new Error('Origin not allowed by CORS'))
@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: true }))
 // 3. Rate Limiting
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 150,
+  max: process.env.NODE_ENV === 'production' ? 2500 : 100000,
   message: { error: 'Too many requests from this IP, please try again after 15 minutes' }
 })
 
@@ -151,10 +151,13 @@ const handleRedirect = async (req, res, next) => {
     }
 
     // 6. Fire and Forget Analytics
+    console.log(`[ANALYTICS] Recording visit for ${code} (${url.id})`)
     prisma.$transaction([
       prisma.visit.create({ data: { urlId: url.id, country, device, browser, referer } }),
       prisma.url.update({ where: { id: url.id }, data: { clickCount: { increment: 1 } } })
-    ]).catch(err => console.error('Analytics Write Error:', err))
+    ])
+      .then(() => console.log(`[ANALYTICS] ✓ Click recorded for ${code}`))
+      .catch(err => console.error(`[ANALYTICS] ✗ Error recording click for ${code}:`, err))
 
     // 7. Sanitize and validate the target URL before redirecting
     try {
@@ -174,9 +177,12 @@ const handleRedirect = async (req, res, next) => {
       return res.send(`<!DOCTYPE html><html><head><title>Redirecting...</title></head><body><script>window.location.replace(${JSON.stringify(targetUrl)})</script><noscript><meta http-equiv="refresh" content="0;url=${targetUrl.replace(/"/g, '&quot;')}"><a href="${targetUrl.replace(/"/g, '&quot;')}">Click here to continue</a></noscript></body></html>`)
     }
 
-    // For GET: standard redirect
+    // For GET: standard redirect without browser caching
     try {
-      res.writeHead(301, { 'Location': encodeURI(targetUrl) })
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0')
+      res.setHeader('Pragma', 'no-cache')
+      res.setHeader('Expires', '0')
+      res.writeHead(302, { 'Location': encodeURI(targetUrl) })
       return res.end()
     } catch (headerErr) {
       console.error('Redirect header error:', headerErr.message)

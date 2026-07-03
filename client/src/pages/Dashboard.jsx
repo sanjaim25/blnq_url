@@ -79,20 +79,68 @@ function CopyBtn({ text, sm }) {
 /* ══════════════════════════════════
    STATISTICS MODAL (pops like QR)
 ══════════════════════════════════ */
-function StatsPanel({ url, onClose }) {
+function StatsPanel({ url, onClose, onStatsUpdate }) {
   const [data, setData]   = useState(null)
   const [loading, setLoading] = useState(true)
+  const [refreshing, setRefreshing] = useState(false)
   const [tab, setTab]     = useState('overview')
   const [chartType, setChartType] = useState('area')
   const short = `${base()}/${url.shortCode}`
   const expired = url.expiresAt && new Date(url.expiresAt) < new Date()
 
+  // Function to fetch statistics
+  const fetchStats = (showRefreshState = false) => {
+    if (showRefreshState) setRefreshing(true)
+    // Add timestamp to prevent caching
+    api.get(`/api/analytics/${url.id}?_t=${Date.now()}`)
+      .then(r => {
+        setData(r.data)
+        if (onStatsUpdate && r.data?.totalClicks !== undefined) {
+          onStatsUpdate(url.id, r.data.totalClicks)
+        }
+      })
+      .catch(() => {
+        if (!showRefreshState) return // Silent fail for auto-refresh
+        toast.error('Failed to load statistics')
+      })
+      .finally(() => {
+        setLoading(false)
+        if (showRefreshState) {
+          setTimeout(() => setRefreshing(false), 300)
+        }
+      })
+  }
+
+  // Manual refresh function
+  const handleRefresh = () => {
+    fetchStats(true)
+    toast.success('Statistics refreshed', { duration: 1000 })
+  }
+
+  // Initial load
   useEffect(() => {
     setLoading(true); setData(null); setTab('overview')
-    api.get(`/api/analytics/${url.id}`)
-      .then(r => setData(r.data))
-      .catch(() => toast.error('Failed to load statistics'))
-      .finally(() => setLoading(false))
+    fetchStats()
+  }, [url.id])
+
+  // Instant live polling: refresh stats every 1 second while modal is open
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchStats(false)
+    }, 1000)
+
+    // Immediately fetch stats the millisecond user returns to this tab after opening link
+    const onFocus = () => {
+      if (document.visibilityState === 'visible') fetchStats(false)
+    }
+    document.addEventListener('visibilitychange', onFocus)
+    window.addEventListener('focus', onFocus)
+
+    return () => {
+      clearInterval(interval)
+      document.removeEventListener('visibilitychange', onFocus)
+      window.removeEventListener('focus', onFocus)
+    }
   }, [url.id])
 
   const total  = data?.totalClicks || 0
@@ -143,6 +191,44 @@ function StatsPanel({ url, onClose }) {
           </div>
         </div>
         <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+          <button 
+            onClick={handleRefresh} 
+            disabled={refreshing}
+            style={{ 
+              display:'inline-flex', 
+              alignItems:'center', 
+              gap:5, 
+              padding:'6px 14px', 
+              background: refreshing ? P3 : P2, 
+              color: refreshing ? '#8d8b94' : INK, 
+              border:`1px solid ${LINE}`, 
+              borderRadius:99, 
+              fontFamily:"'Space Grotesk',sans-serif", 
+              fontSize:'0.8rem', 
+              fontWeight:600, 
+              cursor: refreshing ? 'not-allowed' : 'pointer',
+              transition:'all .15s',
+              opacity: refreshing ? 0.6 : 1
+            }} 
+            onMouseEnter={e=>{if(!refreshing){e.currentTarget.style.background=V;e.currentTarget.style.color='#fff'}}} 
+            onMouseLeave={e=>{if(!refreshing){e.currentTarget.style.background=P2;e.currentTarget.style.color=INK}}}>
+            <svg 
+              width="11" 
+              height="11" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5"
+              style={{ 
+                animation: refreshing ? 'spin 1s linear infinite' : 'none',
+                transformOrigin: 'center'
+              }}>
+              <polyline points="23 4 23 10 17 10"/>
+              <polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+            </svg>
+            Refresh
+          </button>
           <a href={short} target="_blank" rel="noopener noreferrer" style={{ display:'inline-flex', alignItems:'center', gap:5, padding:'6px 14px', background:P2, color:INK, border:`1px solid ${LINE}`, borderRadius:99, fontFamily:"'Space Grotesk',sans-serif", fontSize:'0.8rem', fontWeight:600, textDecoration:'none', transition:'all .15s' }} onMouseEnter={e=>{e.currentTarget.style.background=INK;e.currentTarget.style.color='#eceae4'}} onMouseLeave={e=>{e.currentTarget.style.background=P2;e.currentTarget.style.color=INK}}>
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Open
@@ -766,26 +852,38 @@ export default function Dashboard() {
   const [page, setPage] = useState(1)
   const PER_PAGE = 10
 
-  const fetchUrls = useCallback(async () => {
-    setLoading(true)
+  const fetchUrls = useCallback(async (silent = false) => {
+    if (!silent) setLoading(true)
     try { 
       const [urlsRes, batchesRes] = await Promise.all([
-        api.get('/api/urls'),
-        api.get('/api/urls/batches')
+        api.get(`/api/urls?_t=${Date.now()}`),
+        api.get(`/api/urls/batches?_t=${Date.now()}`)
       ])
       setUrls(urlsRes.data)
       setBatches(batchesRes.data)
     }
-    catch { toast.error('Failed to load links') }
-    finally { setLoading(false) }
+    catch { if (!silent) toast.error('Failed to load links') }
+    finally { if (!silent) setLoading(false) }
   }, [])
   useEffect(() => { fetchUrls() }, [fetchUrls])
 
-  // Refresh click counts when user comes back to this tab
+  // Live polling: refresh click counts silently every 4 seconds when visible
   useEffect(() => {
-    const onVisible = () => { if (document.visibilityState === 'visible') fetchUrls() }
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'visible') fetchUrls(true)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [fetchUrls])
+
+  // Refresh click counts the exact millisecond user switches back to this window or tab
+  useEffect(() => {
+    const onVisible = () => { if (document.visibilityState === 'visible') fetchUrls(true) }
     document.addEventListener('visibilitychange', onVisible)
-    return () => document.removeEventListener('visibilitychange', onVisible)
+    window.addEventListener('focus', onVisible)
+    return () => {
+      document.removeEventListener('visibilitychange', onVisible)
+      window.removeEventListener('focus', onVisible)
+    }
   }, [fetchUrls])
 
   const fetchBatchDetails = async (batchId) => {
@@ -1159,7 +1257,15 @@ export default function Dashboard() {
       {showCreate && <CreateModal onClose={() => setShowCreate(false)} onCreated={handleCreated} />}
       {editUrl && <EditModal url={editUrl} onClose={() => setEditUrl(null)} onUpdated={handleUpdated} />}
       {qrUrl && <QRModal url={qrUrl} onClose={() => setQrUrl(null)} />}
-      {openStats && <StatsPanel url={openStats} onClose={() => setOpenStats(null)} />}
+      {openStats && (
+        <StatsPanel 
+          url={openStats} 
+          onClose={() => setOpenStats(null)} 
+          onStatsUpdate={(id, clickCount) => {
+            setUrls(prev => prev.map(u => u.id === id ? { ...u, clickCount } : u))
+          }} 
+        />
+      )}
       {setExpiryUrl && <SetExpiryModal url={setExpiryUrl} onClose={() => setSetExpiryUrl(null)} onUpdated={(up) => { handleUpdated(up); setSetExpiryUrl(null) }} />}
       {deleteConfirm && (
         <ConfirmModal 

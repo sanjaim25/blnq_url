@@ -76,6 +76,11 @@ router.post(
 // GET /api/urls — Get all URLs for current user
 router.get('/', authenticate, async (req, res) => {
   try {
+    // Prevent caching for live updates
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+    res.setHeader('Pragma', 'no-cache')
+    res.setHeader('Expires', '0')
+
     const urls = await prisma.url.findMany({
       where: { 
         userId: req.userId,
