@@ -59,7 +59,7 @@ export default function Navbar() {
     }}>
       <div style={{
         width: '100%', maxWidth: 1300, margin: '0 auto',
-        padding: '0 max(32px, calc((100vw - 1300px)/2 + 32px))',
+        padding: '0 32px',
         display: 'flex', alignItems: 'center',
         justifyContent: 'space-between', gap: 32,
         position: 'relative',
@@ -67,7 +67,7 @@ export default function Navbar() {
 
         {/* ── Logo ── */}
         <Link to={user ? "/shorten" : "/"} style={{ textDecoration: 'none', flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-          <Logo size="sm" tone="light" animate />
+          <Logo size="sm" tone="light" animate tagline="URL Shortener" />
         </Link>
 
         {/* ── Centre nav links — centered in the bar ── */}

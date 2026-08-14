@@ -46,7 +46,7 @@ function DrawLine({ color = 'var(--inkd)', delay = 0 }) {
 const FEATURES = [
   { n: '01', label: 'Link Shortening', title: 'Instantly shorter. Infinitely smarter.', body: 'Paste any URL, get a clean branded link in milliseconds. Every short link comes with a full analytics dashboard, QR code, and custom alias.', to: '/features/link-shortening', accent: '#7c3aed', icon: <Zap size={24} color="#15141c" strokeWidth={2.5} /> },
   { n: '02', label: 'Real-Time Analytics', title: 'Every click tells a story.', body: 'Watch live traffic as it happens. Country, city, device, browser — every signal captured and visualized the moment someone taps your link.', to: '/features/analytics', accent: '#16a34a', icon: <BarChart2 size={24} color="#15141c" strokeWidth={2.5} /> },
-  { n: '03', label: 'Custom Aliases', title: 'Your brand in every link.', body: 'tinyhop-url/launch24 earns 3× more clicks than tinyhop-url/xK9pQ. Memorable slugs build trust, reinforce campaigns, and work beautifully in print.', to: '/features/custom-aliases', accent: '#6d28d9', icon: <Target size={24} color="#15141c" strokeWidth={2.5} /> },
+  { n: '03', label: 'Custom Aliases', title: 'Your brand in every link.', body: 'Blnq-url/launch24 earns 3× more clicks than Blnq-url/xK9pQ. Memorable slugs build trust, reinforce campaigns, and work beautifully in print.', to: '/features/custom-aliases', accent: '#6d28d9', icon: <Target size={24} color="#15141c" strokeWidth={2.5} /> },
   { n: '04', label: 'QR Code Generator', title: 'Bridge print and digital.', body: 'Every link gets a scannable QR code — custom colours, sizes, and styles. Scans flow into your analytics exactly like link clicks.', to: '/features/qr-codes', accent: '#7c3aed', icon: <Smartphone size={24} color="#15141c" strokeWidth={2.5} /> },
   { n: '05', label: 'Link Expiry', title: 'Links that know when to stop.', body: 'Flash sales end. Events close. Your links should too. Set exact expiry dates down to the minute — with clean, branded expiry pages.', to: '/features/link-expiry', accent: '#5b21b6', icon: <Clock size={24} color="#15141c" strokeWidth={2.5} /> },
   { n: '06', label: 'Smart Routing', title: 'One link. Six continents.', body: 'Route by country or device type. Send French visitors to the French page, mobile users to the app download — from a single short link.', to: '/features/smart-routing', accent: '#7c3aed', icon: <Globe size={24} color="#15141c" strokeWidth={2.5} /> },
@@ -86,7 +86,7 @@ export default function FeaturesIndex() {
           </div>
 
           <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 'clamp(1rem,1.8vw,1.2rem)', lineHeight: 1.7, color: 'var(--inksoft)', maxWidth: 560, marginTop: 28, marginBottom: 44, animation: 'fadeUp .7s var(--ease-out) .55s both' }}>
-            From the moment you shorten a URL to every click it ever receives — TinyHop gives you full visibility and control.
+            From the moment you shorten a URL to every click it ever receives — Blnq gives you full visibility and control.
           </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, animation: 'fadeUp .7s var(--ease-out) .7s both' }}>
@@ -216,7 +216,7 @@ export default function FeaturesIndex() {
 
                   {/* mono code hint */}
                   <div style={{ marginTop: 20, padding: '12px 14px', background: 'var(--paper-3)', borderRadius: 8, fontFamily: "'Fragment Mono',monospace", fontSize: '0.75rem', lineHeight: 1.8 }}>
-                    <span style={{ color: f.accent }}>TinyHop</span>
+                    <span style={{ color: f.accent }}>Blnq</span>
                     <span style={{ color: 'var(--inkd)' }}>.</span>
                     <span style={{ color: '#16a34a' }}>{f.label.toLowerCase().replace(/\s+/g, '_')}</span>
                     <span style={{ color: 'var(--inkd)' }}>()</span>

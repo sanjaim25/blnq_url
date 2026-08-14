@@ -116,7 +116,7 @@ export default function Signup() {
     try {
       const res = await api.post('/api/auth/signup', { name: form.name, email: form.email, password: form.password })
       login(res.data.user, res.data.token)
-      toast.success('Account created! Welcome to TinyHop')
+      toast.success('Account created! Welcome to Blnq')
       navigate('/dashboard')
     } catch (err) {
       const msg = err.response?.data?.error || 'Signup failed. Please try again.'
@@ -142,7 +142,7 @@ export default function Signup() {
         {/* Top logo */}
         <div className="ap-left-content">
           <Link to="/" className="ap-left-logo" id="signup-logo">
-            <Logo size="lg" tone="dark" animate tagline="Link Intelligence" />
+            <Logo size="lg" tone="dark" animate tagline="URL Shortener" />
           </Link>
         </div>
 

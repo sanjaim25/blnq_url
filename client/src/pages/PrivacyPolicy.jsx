@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
               Our Commitment to Privacy
             </h2>
             <p style={{ marginBottom: 20 }}>
-              At TinyHop, we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and protect your information when you use our service.
+              At Blnq, we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, store, and protect your information when you use our service.
             </p>
 
             <h3 style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: '1.25rem', color: INK, marginTop: 32, marginBottom: 16 }}>
@@ -194,9 +194,9 @@ export default function PrivacyPolicy() {
               For privacy-related questions or to exercise your rights, contact us:
             </p>
             <div style={{ background: P2, padding: 24, borderRadius: 12, marginTop: 16 }}>
-              <p style={{ marginBottom: 8, fontWeight: 600 }}>Privacy Officer: privacy@TinyHop.io</p>
-              <p style={{ marginBottom: 8, fontWeight: 600 }}>General Contact: legal@TinyHop.io</p>
-              <p style={{ marginBottom: 8, fontWeight: 600 }}>Support: support@TinyHop.io</p>
+              <p style={{ marginBottom: 8, fontWeight: 600 }}>Privacy Officer: privacy@blnq.io</p>
+              <p style={{ marginBottom: 8, fontWeight: 600 }}>General Contact: legal@blnq.io</p>
+              <p style={{ marginBottom: 8, fontWeight: 600 }}>Support: support@blnq.io</p>
               <p style={{ fontWeight: 600 }}>Response Time: Within 2 business days</p>
             </div>
 

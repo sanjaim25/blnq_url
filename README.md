@@ -1,12 +1,12 @@
-# TinyHop — Links, Elevated.
+# Blnq — Links, Elevated.
 
-TinyHop is a professional, high-performance URL shortener and link management platform. It offers an elegant user interface for creating, managing, and analyzing short links, complete with features like custom aliases, password protection, bulk link shortening, and detailed click analytics.
+Blnq is a professional, high-performance URL shortener and link management platform. It offers an elegant user interface for creating, managing, and analyzing short links, complete with features like custom aliases, password protection, bulk link shortening, and detailed click analytics.
 
 ## **🎥 Project Demonstration Walkthrough**
 
 <div align="center">
   <a href="https://www.loom.com/share/7c82266bdf1f4f8db279f63b03d1c19a">
-    <img src="https://cdn.loom.com/sessions/thumbnails/7c82266bdf1f4f8db279f63b03d1c19a-with-play.gif" alt="TinyHop Video Walkthrough" width="800">
+    <img src="https://cdn.loom.com/sessions/thumbnails/7c82266bdf1f4f8db279f63b03d1c19a-with-play.gif" alt="Blnq Video Walkthrough" width="800">
   </a>
   <br/><br/>
   <strong><a href="https://www.loom.com/share/7c82266bdf1f4f8db279f63b03d1c19a">🎥 Click here to watch the full project demonstration on Loom!</a></strong>
@@ -14,7 +14,7 @@ TinyHop is a professional, high-performance URL shortener and link management pl
 
 ## Architecture & AI Planning Document
 
-TinyHop is built using a modern, scalable architecture. The application is divided into a decoupled client and server to ensure performance, security, and maintainability.
+Blnq is built using a modern, scalable architecture. The application is divided into a decoupled client and server to ensure performance, security, and maintainability.
 
 ### Architecture Diagram
 
@@ -38,7 +38,7 @@ During the initial planning and development phases, AI played a crucial role in:
 
 ## Setup Instructions
 
-To run TinyHop locally, follow these steps:
+To run Blnq locally, follow these steps:
 
 ### Prerequisites
 - Node.js (v18 or higher recommended)
@@ -47,8 +47,8 @@ To run TinyHop locally, follow these steps:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/sanjaim25/tinyhop_url.git
-cd tinyhop_url
+git clone https://github.com/sanjaim25/blnq_url.git
+cd blnq_url
 ```
 
 ### 2. Backend Setup
@@ -98,7 +98,7 @@ The application will be accessible at `http://localhost:5173`.
 
 ## Future Updates
 
-We are constantly working to improve TinyHop. Here are some of the features planned for future releases:
+We are constantly working to improve Blnq. Here are some of the features planned for future releases:
 - **Advanced Analytics**: Geolocation tracking, device/browser statistics, and referrer tracking for deeper insights into link engagement.
 - **Custom Domains**: Allow users to link their own domains (e.g., `link.yourbrand.com`) for fully white-labeled short URLs.
 - **Link Expiration & Expiry Schedules**: Set automated schedules for links to activate and deactivate, ideal for time-sensitive campaigns.

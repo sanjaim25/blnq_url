@@ -208,7 +208,7 @@ export default function Landing() {
           {result && (
             <div className="lp-result">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              tinyhop-url/{result.shortCode}
+              Blnq-url/{result.shortCode}
             </div>
           )}
         </div>
@@ -268,7 +268,7 @@ export default function Landing() {
                 <span className="lp-eyebrow" style={{ justifyContent: 'center', color: 'var(--acid)' }}>Free to start</span>
                 <h2 className="lp-h2" style={{ color: 'var(--paper)', marginBottom: 18, fontStyle: 'italic' }}>Ready to make<br />every link count?</h2>
                 <p style={{ fontSize: '1.0625rem', color: 'rgba(255,255,255,0.7)', maxWidth: 460, margin: '0 auto 36px', lineHeight: 1.7 }}>
-                  Join thousands of teams using TinyHop to manage, track, and scale their link strategy.
+                  Join thousands of teams using Blnq to manage, track, and scale their link strategy.
                 </p>
                 <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
                   <Link to="/signup" id="cta-signup-btn" className="lp-btn lp-btn-violet">

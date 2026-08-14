@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import api from '../api/axios'
 import toast from 'react-hot-toast'
@@ -55,7 +55,16 @@ export default function Login() {
   const [errors, setErrors]   = useState({})
   const [focused, setFocused] = useState(null)
 
+  const location = useLocation()
+
   useEffect(() => { emailRef.current?.focus() }, [])
+
+  useEffect(() => {
+    if (new URLSearchParams(location.search).get('expired')) {
+      toast.error('Session expired. Please sign in again.')
+      window.history.replaceState({}, document.title, '/login')
+    }
+  }, [location])
 
   const set = (k) => (e) => { setForm(f => ({ ...f, [k]: e.target.value })); setErrors({}) }
 
@@ -99,7 +108,7 @@ export default function Login() {
         {/* Top logo */}
         <div className="ap-left-content">
           <Link to="/" className="ap-left-logo" id="login-logo">
-            <Logo size="lg" tone="dark" animate tagline="Link Intelligence" />
+            <Logo size="lg" tone="dark" animate tagline="URL Shortener" />
           </Link>
         </div>
 

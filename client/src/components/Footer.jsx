@@ -18,7 +18,7 @@ const cols = [
     heading: 'Resources',
     links: [
       { label: 'Analytics Preview', to: '/analytics-showcase' },
-      { label: 'About TinyHop',        to: '/about' },
+      { label: 'About Blnq',        to: '/about' },
     ],
   },
   {
@@ -56,7 +56,7 @@ export default function Footer() {
               <Logo size="md" tone="dark" />
             </Link>
             <p style={{ fontSize: '0.875rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.45)', marginBottom: 24 }}>
-              The link intelligence layer for modern teams. Shorten, track, and scale with precision.
+              The URL shortener for modern teams. Shorten, track, and scale with precision.
             </p>
             {/* CTA pill */}
             <Link to="/signup" style={{
@@ -104,7 +104,7 @@ export default function Footer() {
         {/* ── Bottom bar ── */}
         <div style={{ paddingTop: 28, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
           <p style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.3)' }}>
-            © {new Date().getFullYear()} TinyHop. All rights reserved.
+            © {new Date().getFullYear()} Blnq. All rights reserved.
           </p>
         </div>
       </div>

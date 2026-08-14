@@ -33,14 +33,14 @@ export default function TermsOfService() {
               Agreement to Terms
             </h2>
             <p style={{ marginBottom: 20 }}>
-              By accessing and using TinyHop ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.
+              By accessing and using Blnq ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our service.
             </p>
 
             <h3 style={{ fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, fontSize: '1.25rem', color: INK, marginTop: 32, marginBottom: 16 }}>
               1. Service Description
             </h3>
             <p style={{ marginBottom: 20 }}>
-              TinyHop provides URL shortening services that allow you to create, manage, and track shortened links. We offer both free and premium plans with various features including:
+              Blnq provides URL shortening services that allow you to create, manage, and track shortened links. We offer both free and premium plans with various features including:
             </p>
             <ul style={{ marginLeft: 24, marginBottom: 24 }}>
               <li style={{ marginBottom: 12 }}>Custom branded short links</li>
@@ -95,7 +95,7 @@ export default function TermsOfService() {
               5. Content and Data Ownership
             </h3>
             <p style={{ marginBottom: 20 }}>
-              You retain ownership of all content and data you submit to the Service. By using TinyHop, you grant us a limited license to:
+              You retain ownership of all content and data you submit to the Service. By using Blnq, you grant us a limited license to:
             </p>
             <ul style={{ marginLeft: 24, marginBottom: 24 }}>
               <li style={{ marginBottom: 12 }}>Store and process your data to provide the Service</li>
@@ -142,8 +142,8 @@ export default function TermsOfService() {
               For questions about these Terms of Service, contact us at:
             </p>
             <div style={{ background: P2, padding: 24, borderRadius: 12, marginTop: 16 }}>
-              <p style={{ marginBottom: 8, fontWeight: 600 }}>Email: legal@TinyHop.io</p>
-              <p style={{ marginBottom: 8, fontWeight: 600 }}>Support: support@TinyHop.io</p>
+              <p style={{ marginBottom: 8, fontWeight: 600 }}>Email: legal@blnq.io</p>
+              <p style={{ marginBottom: 8, fontWeight: 600 }}>Support: support@blnq.io</p>
               <p style={{ fontWeight: 600 }}>Response Time: Within 2 business days</p>
             </div>
 

@@ -82,7 +82,7 @@ export default function Legal() {
               <strong>Last updated:</strong> June 13, 2026
             </p>
             <p style={{ marginBottom: 16 }}>
-              By using TinyHop, you agree to these terms. We provide a URL shortening service that allows you to create, manage, and track short links.
+              By using Blnq, you agree to these terms. We provide a URL shortening service that allows you to create, manage, and track short links.
             </p>
             <h3 style={{ fontWeight: 700, fontSize: '1rem', color: INK, marginTop: 24, marginBottom: 12 }}>Acceptable Use</h3>
             <ul style={{ marginLeft: 20, marginBottom: 16 }}>
@@ -185,8 +185,8 @@ export default function Legal() {
               If you have questions about these policies or want to exercise your rights, contact us:
             </p>
             <div style={{ background: P2, padding: 20, borderRadius: 12, marginTop: 16 }}>
-              <p style={{ marginBottom: 8 }}><strong>Email:</strong> legal@TinyHop.io</p>
-              <p style={{ marginBottom: 8 }}><strong>Support:</strong> support@TinyHop.io</p>
+              <p style={{ marginBottom: 8 }}><strong>Email:</strong> legal@blnq.io</p>
+              <p style={{ marginBottom: 8 }}><strong>Support:</strong> support@blnq.io</p>
               <p><strong>Response Time:</strong> We aim to respond within 2 business days</p>
             </div>
           </Section>

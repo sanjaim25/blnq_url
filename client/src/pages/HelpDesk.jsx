@@ -76,7 +76,7 @@ export default function HelpDesk() {
 
         {/* Quick Actions */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 16, marginBottom: 48, animation: 'fadeUp .6s cubic-bezier(0.16,1,0.3,1) .1s both' }}>
-          <a href="mailto:support@TinyHop.io" style={{ background: '#fff', border: `1px solid ${LINE}`, borderRadius: 16, padding: '24px', textDecoration: 'none', transition: 'all .2s', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}
+          <a href="mailto:support@blnq.io" style={{ background: '#fff', border: `1px solid ${LINE}`, borderRadius: 16, padding: '24px', textDecoration: 'none', transition: 'all .2s', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(20,20,28,0.1)' }}
             onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '' }}>
             <div style={{ width: 48, height: 48, borderRadius: 12, background: `${V}15`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -87,7 +87,7 @@ export default function HelpDesk() {
             </div>
             <div>
               <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1rem', fontWeight: 700, color: INK, marginBottom: 4 }}>Email Support</div>
-              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.875rem', color: '#8d8b94' }}>support@TinyHop.io</div>
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.875rem', color: '#8d8b94' }}>support@blnq.io</div>
               <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.75rem', color: GRN, marginTop: 8 }}>Response within 24 hours</div>
             </div>
           </a>
@@ -137,7 +137,7 @@ export default function HelpDesk() {
 
           <FAQItem 
             question="Can I customize my short links?"
-            answer={<>Yes! You can create custom aliases for your links. Instead of a random code like "tinyhop-url/xK9pQ", you can have something memorable like "tinyhop-url/summer-sale". Just enter your desired alias when creating the link.</>}
+            answer={<>Yes! You can create custom aliases for your links. Instead of a random code like "Blnq-url/xK9pQ", you can have something memorable like "Blnq-url/summer-sale". Just enter your desired alias when creating the link.</>}
           />
 
           <FAQItem 
@@ -201,7 +201,7 @@ export default function HelpDesk() {
           <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: '1rem', color: '#8d8b94', marginBottom: 24, maxWidth: 500, margin: '0 auto 24px' }}>
             Can't find what you're looking for? Our support team is here to help.
           </p>
-          <a href="mailto:support@TinyHop.io" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', background: V, color: '#fff', borderRadius: 99, fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.9375rem', fontWeight: 600, textDecoration: 'none', transition: 'all .2s', boxShadow: `0 4px 14px ${V}40` }}
+          <a href="mailto:support@blnq.io" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', background: V, color: '#fff', borderRadius: 99, fontFamily: "'Space Grotesk', sans-serif", fontSize: '0.9375rem', fontWeight: 600, textDecoration: 'none', transition: 'all .2s', boxShadow: `0 4px 14px ${V}40` }}
             onMouseEnter={e => { e.currentTarget.style.background = '#6d28d9'; e.currentTarget.style.transform = 'translateY(-1px)' }}
             onMouseLeave={e => { e.currentTarget.style.background = V; e.currentTarget.style.transform = '' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

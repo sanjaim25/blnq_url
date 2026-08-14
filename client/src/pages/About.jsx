@@ -29,7 +29,7 @@ export default function About() {
             color: '#7c3aed',
             marginBottom: 24,
           }}>
-            About TinyHop
+            About Blnq
           </div>
           <h1 style={{
             fontSize: '3rem',
@@ -38,7 +38,7 @@ export default function About() {
             color: 'var(--inkd)',
             marginBottom: 20,
           }}>
-            The Link Intelligence Layer for Modern Teams
+            The URL Shortener for Modern Teams
           </h1>
           <p style={{
             fontSize: '1.125rem',
@@ -47,7 +47,7 @@ export default function About() {
             maxWidth: 640,
             margin: '0 auto',
           }}>
-            TinyHop transforms how businesses share, track, and optimize their links with powerful analytics and seamless management.
+            Blnq transforms how businesses share, track, and optimize their links with powerful analytics and seamless management.
           </p>
         </div>
 
@@ -69,14 +69,14 @@ export default function About() {
             color: 'rgba(20,20,28,0.7)',
             marginBottom: 16,
           }}>
-            In today's digital landscape, every link represents an opportunity—to connect, to convert, to understand your audience. At TinyHop, we believe managing these connections should be simple, powerful, and intelligent.
+            In today's digital landscape, every link represents an opportunity—to connect, to convert, to understand your audience. At Blnq, we believe managing these connections should be simple, powerful, and intelligent.
           </p>
           <p style={{
             fontSize: '1rem',
             lineHeight: 1.8,
             color: 'rgba(20,20,28,0.7)',
           }}>
-            Our mission is to empower businesses and individuals with the tools they need to make every link count. From instant shortening to real-time analytics, we provide the intelligence layer that turns simple URLs into strategic assets.
+            Our mission is to empower businesses and individuals with the tools they need to make every link count. From instant shortening to real-time analytics, we provide the URL shortener that turns simple URLs into strategic assets.
           </p>
         </section>
 
@@ -141,7 +141,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* Why Choose TinyHop Section */}
+        {/* Why Choose Blnq Section */}
         <section style={{ marginBottom: 56 }}>
           <h2 style={{
             fontSize: '1.75rem',
@@ -151,7 +151,7 @@ export default function About() {
             paddingBottom: 16,
             borderBottom: '2px solid rgba(124, 58, 237, 0.2)',
           }}>
-            Why Choose TinyHop?
+            Why Choose Blnq?
           </h2>
           <div style={{
             display: 'grid',
@@ -213,7 +213,7 @@ export default function About() {
             color: 'rgba(20,20,28,0.7)',
             marginBottom: 24,
           }}>
-            From startups to enterprises, content creators to marketing teams, TinyHop serves thousands of users who demand excellence in link management:
+            From startups to enterprises, content creators to marketing teams, Blnq serves thousands of users who demand excellence in link management:
           </p>
           <ul style={{
             listStyle: 'none',
@@ -321,7 +321,7 @@ export default function About() {
             color: 'rgba(20,20,28,0.7)',
             marginBottom: 20,
           }}>
-            TinyHop is built on a cutting-edge technology stack designed for speed, reliability, and scalability:
+            Blnq is built on a cutting-edge technology stack designed for speed, reliability, and scalability:
           </p>
           <div style={{
             padding: 24,
@@ -388,7 +388,7 @@ export default function About() {
             maxWidth: 560,
             margin: '0 auto 32px',
           }}>
-            Join thousands of businesses already using TinyHop to shorten, track, and optimize their links.
+            Join thousands of businesses already using Blnq to shorten, track, and optimize their links.
           </p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/signup" style={{
