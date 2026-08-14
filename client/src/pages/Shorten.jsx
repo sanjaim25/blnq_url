@@ -432,7 +432,7 @@ export default function Shorten() {
 
           {/* Session stats */}
           {history.length > 0 && (
-            <div className="shorten-stats" style={{ display:'flex', gap:10, marginTop: 24, animation:'fadeUp .4s cubic-bezier(0.16,1,0.3,1) .1s both' }}>
+            <div className="shorten-stats-row" style={{ display:'flex', gap:10, marginTop: 24, animation:'fadeUp .4s cubic-bezier(0.16,1,0.3,1) .1s both' }}>
               <StatPill icon={<LinkIcon size={18} color="#15141c" strokeWidth={2.5} />} value={history.length} label="Links created" color={V} />
               <StatPill icon={<Pointer size={18} color="#15141c" strokeWidth={2.5} />} value={totalClicks} label="Total clicks" color={GRN} />
               <StatPill icon={<Zap size={18} color="#15141c" strokeWidth={2.5} />} value="Live" label="Tracking" color={AMB} />

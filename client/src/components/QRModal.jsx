@@ -34,7 +34,7 @@ export default function QRModal({ url, onClose }) {
 
   return (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(20,20,28,0.55)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', zIndex: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, animation: 'fadeIn .2s ease both' }} onClick={e => e.target === e.currentTarget && onClose()}>
-      <div style={{ background: 'var(--paper)', border: '1px solid var(--line)', borderRadius: 20, width: '100%', maxWidth: 460, boxShadow: '0 32px 80px rgba(20,20,28,0.25)', animation: 'scaleIn .3s var(--ease-out) both', position: 'relative', overflow: 'hidden' }}>
+      <div className="qr-modal-mobile" style={{ background: 'var(--paper)', border: '1px solid var(--line)', borderRadius: 20, width: '100%', maxWidth: 460, boxShadow: '0 32px 80px rgba(20,20,28,0.25)', animation: 'scaleIn .3s var(--ease-out) both', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg,#7c3aed,#6d28d9)' }} />
         <div style={{ padding: '24px 24px 16px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
           <div>

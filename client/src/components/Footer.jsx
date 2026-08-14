@@ -48,7 +48,7 @@ export default function Footer() {
 
       {/* ── Top: logo + tagline ── */}
       <div style={{ maxWidth: 1300, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 48, flexWrap: 'wrap', paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="footer-top-grid" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 48, flexWrap: 'wrap', paddingBottom: 56, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
 
           {/* Brand column */}
           <div style={{ maxWidth: 260 }}>
@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
 
           {/* Link columns */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '40px 24px', flex: 1, minWidth: 0, width: '100%' }}>
+          <div className="footer-link-cols" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '40px 24px', flex: 1, minWidth: 0, width: '100%' }}>
             {cols.map(col => (
               <div key={col.heading}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', marginBottom: 18 }}>

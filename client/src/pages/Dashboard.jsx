@@ -177,7 +177,7 @@ function StatsPanel({ url, onClose, onStatsUpdate }) {
       onClick={e => e.target === e.currentTarget && onClose()}>
       <div style={{ background:'#eceae4', border:`1px solid ${LINE}`, borderRadius:22, width:'100%', maxWidth:680, maxHeight:'90vh', overflowY:'auto', boxShadow:'0 32px 80px rgba(20,20,28,0.22)', animation:'scaleSpring .3s cubic-bezier(0.34,1.56,0.64,1) both', position:'relative' }}>
       {/* Panel header */}
-      <div style={{ background:`linear-gradient(135deg,${V}08,${GRN}06)`, borderBottom:`1px solid ${V}15`, padding:'16px 20px', display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:12, position:'sticky', top:0, zIndex:10, borderRadius:'22px 22px 0 0' }}>
+      <div className="dash-stats-header" style={{ background:`linear-gradient(135deg,${V}08,${GRN}06)`, borderBottom:`1px solid ${V}15`, padding:'16px 20px', display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:12, position:'sticky', top:0, zIndex:10, borderRadius:'22px 22px 0 0' }}>
         <div style={{ display:'flex', alignItems:'center', gap:12, minWidth:0 }}>
           <div style={{ width:36, height:36, borderRadius:10, background:`${V}15`, border:`1px solid ${V}25`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={V} strokeWidth="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -190,7 +190,7 @@ function StatsPanel({ url, onClose, onStatsUpdate }) {
             <div style={{ fontFamily:"'Space Grotesk',sans-serif", fontSize:'0.72rem', color:'#8d8b94', marginTop:2, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', maxWidth:320 }}>{url.originalUrl}</div>
           </div>
         </div>
-        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+        <div className="stats-panel-actions" style={{ display:'flex', alignItems:'center', gap:8 }}>
           <button 
             onClick={handleRefresh} 
             disabled={refreshing}
@@ -241,7 +241,7 @@ function StatsPanel({ url, onClose, onStatsUpdate }) {
       </div>
 
       {/* Tab bar */}
-      <div style={{ display:'flex', gap:0, borderBottom:`1px solid ${LINE}`, background:P2 }}>
+      <div className="dash-stats-tabs" style={{ display:'flex', gap:0, borderBottom:`1px solid ${LINE}`, background:P2 }}>
         {TABS.map(t => (
           <button key={t.key} onClick={() => setTab(t.key)} style={{ display:'inline-flex', alignItems:'center', gap:5, padding:'10px 16px', border:'none', borderBottom:`2px solid ${tab===t.key?V:'transparent'}`, background:'transparent', fontFamily:"'Space Grotesk',sans-serif", fontSize:'0.8rem', fontWeight:tab===t.key?700:500, color:tab===t.key?V:'#8d8b94', cursor:'pointer', transition:'all .15s', whiteSpace:'nowrap' }} onMouseEnter={e=>{if(tab!==t.key){e.currentTarget.style.color=INK;e.currentTarget.style.background='rgba(20,20,28,0.04)'}}} onMouseLeave={e=>{if(tab!==t.key){e.currentTarget.style.color='#8d8b94';e.currentTarget.style.background='transparent'}}}>
             {t.icon} {t.label}
@@ -264,7 +264,7 @@ function StatsPanel({ url, onClose, onStatsUpdate }) {
             {tab === 'overview' && (
               <div style={{ display:'flex', flexDirection:'column', gap:16 }}>
                 {/* Meta row */}
-                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(140px,1fr))', gap:10 }}>
+                <div className="stats-panel-meta-row" style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(140px,1fr))', gap:10 }}>
                   {[
                     { label:'Status',      value: expired? <span style={{display:"flex", alignItems:"center", gap:4}}><Clock size={14} color="#15141c" strokeWidth={2.5} /> Expired</span> : <span style={{display:"flex", alignItems:"center", gap:4}}><CheckCircle size={14} color="#15141c" strokeWidth={2.5} /> Active</span>, color: expired?'#ef4444':GRN },
                     { label:'Total Clicks',value: total.toLocaleString(),           color: V },
@@ -319,7 +319,7 @@ function StatsPanel({ url, onClose, onStatsUpdate }) {
                 </div>
 
                 {/* Countries + Devices 2-col */}
-                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14 }}>
+                <div className="dash-stats-2col" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14 }}>
                   <div style={{ background:P2, border:`1px solid ${LINE}`, borderRadius:14, padding:'14px' }}>
                     <div style={{ fontFamily:"'Playfair Display',serif", fontWeight:700, fontSize:'0.9375rem', color:INK, marginBottom:12 }}>Top countries</div>
                     {data.byCountry?.length > 0 ? (
@@ -588,7 +588,7 @@ function UrlRow({ url, index, onDelete, onCopy, onEdit, onQR, onAnalytics, onSet
           ))}
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, paddingTop: 8, borderTop: `1px solid ${LINE}`, flexWrap: 'wrap' }}>
+      <div className="dash-url-meta" style={{ display: 'flex', alignItems: 'center', gap: 16, paddingTop: 8, borderTop: `1px solid ${LINE}`, flexWrap: 'wrap' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontFamily: "'Space Grotesk',sans-serif", fontSize: '0.75rem' }}>
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={V} strokeWidth="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>
           <strong style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.9375rem', fontWeight: 900, color: V }}>{clicks.toLocaleString()}</strong>
@@ -726,7 +726,7 @@ function CreateModal({ onClose, onCreated }) {
               <input ref={inputRef} id="modal-original-url" type="url" style={{ ...IS, borderBottomColor: error ? '#ef4444' : INK }} placeholder="https://your-very-long-url.com/…" value={form.originalUrl} onChange={e => { setForm({ ...form, originalUrl: e.target.value }); setError('') }} onFocus={e => e.target.style.borderBottomColor = V} onBlur={e => e.target.style.borderBottomColor = error ? '#ef4444' : INK} />
               {error && <p style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: '0.75rem', color: '#ef4444', marginTop: 6, fontFamily: "'Space Grotesk',sans-serif" }}><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>{error}</p>}
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="create-modal-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               <div>
                 <label style={{ display: 'block', fontFamily: "'Space Grotesk',sans-serif", fontSize: '0.6875rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8d8b94', marginBottom: 7 }}>Alias <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0, color: '#b0adb8' }}>(opt)</span></label>
                 <div style={{ position: 'relative' }}>
@@ -968,7 +968,7 @@ export default function Dashboard() {
             <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.5rem', fontWeight: 900, letterSpacing: '-0.03em', color: INK, lineHeight: 1 }}>My <em style={{ fontStyle: 'italic', color: V }}>Links</em></h1>
             <p style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: '0.78rem', color: '#8d8b94', marginTop: 2 }}>{loading ? '…' : `${urls.length} link${urls.length !== 1 ? 's' : ''} · ${totalClicks.toLocaleString()} total clicks`}</p>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 9, flexWrap: 'wrap' }}>
+          <div className="dash-sticky-actions" style={{ display: 'flex', alignItems: 'center', gap: 9, flexWrap: 'wrap' }}>
             {/* View Mode Toggle */}
             <div style={{ display: 'flex', background: '#fff', border: `1px solid ${LINE}`, borderRadius: 99, padding: 2 }}>
               <button
@@ -1021,12 +1021,12 @@ export default function Dashboard() {
 
       {/* Body */}
       <div style={{ maxWidth: 1300, margin: '0 auto', padding: '28px max(32px, calc((100vw - 1300px)/2 + 32px)) 80px', position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 22, alignItems: 'start' }}>
+        <div className="dash-main-grid">
 
           {/* LEFT */}
           <div>
             {/* Stats */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14, marginBottom: 22 }}>
+            <div className="dash-stat-grid">
               <StatCard label="Links"  value={loading ? '—' : urls.length}                                                  icon={<LinkIcon size={20} color="#15141c" strokeWidth={2.5} />} color={V}   spark={spark(urls.length / 7)}                        delay={0}   sub="total" />
               <StatCard label="Clicks" value={loading ? '—' : totalClicks.toLocaleString()}                                 icon={<TrendingUp size={20} color="#15141c" strokeWidth={2.5} />} color={GRN} spark={spark(totalClicks / 7)}                        delay={60}  sub="all time" />
               <StatCard label="Avg"    value={loading ? '—' : urls.length ? ((totalClicks / urls.length) || 0).toFixed(1) : '—'} icon={<TrendingUp size={20} color="#15141c" strokeWidth={2.5} />} color={AMB} spark={spark((totalClicks / Math.max(urls.length, 1)) / 7)} delay={120} sub="per link" />
@@ -1200,7 +1200,7 @@ export default function Dashboard() {
           </div>
 
           {/* RIGHT SIDEBAR */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+          <div className="dash-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
 
             {/* Shorten CTA */}
             <Link to="/shorten" style={{ display: 'block', background: INK, border: `1px solid ${LINE}`, borderRadius: 18, padding: '22px 20px', textDecoration: 'none', transition: 'all .25s', boxShadow: '0 4px 16px rgba(20,20,28,0.12)', animation: 'fadeUp .5s cubic-bezier(0.16,1,0.3,1) .1s both', overflow: 'hidden', position: 'relative' }} onMouseEnter={e => { e.currentTarget.style.background = VD; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = `0 10px 32px ${V}50` }} onMouseLeave={e => { e.currentTarget.style.background = INK; e.currentTarget.style.transform = ''; e.currentTarget.style.boxShadow = '0 4px 16px rgba(20,20,28,0.12)' }}>
