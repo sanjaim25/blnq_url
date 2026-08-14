@@ -4,15 +4,6 @@ Blnq is a professional, high-performance URL shortener and link management platf
 
 🔗 **Live Demo:** [https://blnq.vercel.app](https://blnq.vercel.app/)
 
-## **🎥 Project Demonstration Walkthrough**
-
-<div align="center">
-  <a href="https://www.loom.com/share/7c82266bdf1f4f8db279f63b03d1c19a">
-    <img src="https://cdn.loom.com/sessions/thumbnails/7c82266bdf1f4f8db279f63b03d1c19a-with-play.gif" alt="Blnq Video Walkthrough" width="800">
-  </a>
-  <br/><br/>
-  <strong><a href="https://www.loom.com/share/7c82266bdf1f4f8db279f63b03d1c19a">🎥 Click here to watch the full project demonstration on Loom!</a></strong>
-</div>
 
 ## Architecture & AI Planning Document
 
