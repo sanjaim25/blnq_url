@@ -2,6 +2,8 @@
 
 Blnq is a professional, high-performance URL shortener and link management platform. It offers an elegant user interface for creating, managing, and analyzing short links, complete with features like custom aliases, password protection, bulk link shortening, and detailed click analytics.
 
+🔗 **Live Demo:** [https://blnq.vercel.app](https://blnq.vercel.app/)
+
 ## **🎥 Project Demonstration Walkthrough**
 
 <div align="center">
