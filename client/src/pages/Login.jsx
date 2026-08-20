@@ -54,6 +54,7 @@ export default function Login() {
   const [showPass, setShowPass] = useState(false)
   const [errors, setErrors]   = useState({})
   const [focused, setFocused] = useState(null)
+  const googleBtnRef = useRef(null)
 
   const location = useLocation()
 
@@ -92,6 +93,67 @@ export default function Login() {
       msg.toLowerCase().includes('password') ? setErrors({ password: msg }) : setErrors({ email: msg })
     } finally { setLoading(false) }
   }
+
+  /* ── Google Sign-In ── */
+  const handleGoogleResponse = async (response) => {
+    try {
+      const res = await api.post('/api/auth/google', { credential: response.credential })
+      login(res.data.user, res.data.token)
+      toast.success(`Welcome, ${res.data.user.name || res.data.user.email.split('@')[0]}!`)
+      navigate('/dashboard')
+    } catch (err) {
+      const msg = err.response?.data?.error || 'Google sign-in failed. Please try again.'
+      toast.error(msg)
+    }
+  }
+
+  useEffect(() => {
+    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+    if (!clientId) return
+
+    const callbackRef = { current: handleGoogleResponse }
+
+    const initGoogle = () => {
+      if (!window.google?.accounts?.id) return
+      window.google.accounts.id.initialize({
+        client_id: clientId,
+        callback: (resp) => callbackRef.current(resp),
+      })
+      if (googleBtnRef.current) {
+        window.google.accounts.id.renderButton(googleBtnRef.current, {
+          theme: 'outline',
+          size: 'large',
+          text: 'continue_with',
+          shape: 'rectangular',
+          width: googleBtnRef.current.offsetWidth || 350,
+        })
+      }
+    }
+
+    if (window.google?.accounts?.id) {
+      initGoogle()
+    } else {
+      let attempts = 0
+      const checkGoogle = setInterval(() => {
+        attempts++
+        if (window.google?.accounts?.id) {
+          clearInterval(checkGoogle)
+          initGoogle()
+        } else if (attempts > 50) { // Give up after 5 seconds
+          clearInterval(checkGoogle)
+        }
+      }, 100)
+
+      if (!document.getElementById('google-gsi-script')) {
+        const script = document.createElement('script')
+        script.id = 'google-gsi-script'
+        script.src = 'https://accounts.google.com/gsi/client'
+        script.async = true
+        script.defer = true
+        document.head.appendChild(script)
+      }
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="ap">
@@ -249,13 +311,24 @@ export default function Login() {
 
           <div className="ap-divider" style={{ animation: 'fadeUp .6s var(--ease-out) .86s both' }}>or</div>
 
-          <div style={{ animation: 'fadeUp .6s var(--ease-out) .92s both' }}>
+          {/* Google Sign-In */}
+          {import.meta.env.VITE_GOOGLE_CLIENT_ID && (
+            <div style={{ animation: 'fadeUp .6s var(--ease-out) .90s both' }}>
+              <div
+                ref={googleBtnRef}
+                id="google-signin-btn"
+                style={{ display: 'flex', justifyContent: 'center', minHeight: 44 }}
+              />
+            </div>
+          )}
+
+          <div style={{ animation: 'fadeUp .6s var(--ease-out) .96s both' }}>
             <Link to="/signup" id="login-signup-link" className="ap-alt-btn">
               Create a free account
             </Link>
           </div>
 
-          <p className="ap-legal" style={{ animation: 'fadeUp .6s var(--ease-out) 1s both' }}>
+          <p className="ap-legal" style={{ animation: 'fadeUp .6s var(--ease-out) 1.04s both' }}>
             By continuing you agree to our <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>.
           </p>
         </div>
