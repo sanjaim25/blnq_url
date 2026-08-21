@@ -284,9 +284,22 @@ export default function Signup() {
             ))}
           </div>
 
+          {/* Google Sign-Up — fastest path, shown first */}
+          {import.meta.env.VITE_GOOGLE_CLIENT_ID && (
+            <div style={{ animation: 'fadeUp .6s var(--ease-out) .44s both' }}>
+              <div
+                ref={googleBtnRef}
+                id="google-signup-btn"
+                style={{ display: 'flex', justifyContent: 'center', minHeight: 44 }}
+              />
+            </div>
+          )}
+
+          <div className="ap-divider" style={{ animation: 'fadeUp .6s var(--ease-out) .5s both' }}>or sign up with email</div>
+
           <form onSubmit={handleSubmit} noValidate>
             {/* Name */}
-            <div className="ap-field" style={{ animation: 'fadeUp .6s var(--ease-out) .5s both' }}>
+            <div className="ap-field" style={{ animation: 'fadeUp .6s var(--ease-out) .56s both' }}>
               <label className="ap-label" htmlFor="signup-name">Full name</label>
               <input
                 ref={emailRef}
@@ -307,7 +320,7 @@ export default function Signup() {
             </div>
 
             {/* Email */}
-            <div className="ap-field" style={{ animation: 'fadeUp .6s var(--ease-out) .56s both' }}>
+            <div className="ap-field" style={{ animation: 'fadeUp .6s var(--ease-out) .62s both' }}>
               <label className="ap-label" htmlFor="signup-email">Work email</label>
               <input
                 id="signup-email"
@@ -362,7 +375,7 @@ export default function Signup() {
             </div>
 
             {/* Submit */}
-            <div style={{ animation: 'fadeUp .6s var(--ease-out) .8s both' }}>
+            <div style={{ animation: 'fadeUp .6s var(--ease-out) .76s both' }}>
               <button
                 type="submit"
                 id="signup-submit-btn"
@@ -382,26 +395,13 @@ export default function Signup() {
             </div>
           </form>
 
-          <div className="ap-divider" style={{ animation: 'fadeUp .6s var(--ease-out) 1s both' }}>or</div>
-
-          {/* Google Sign-Up */}
-          {import.meta.env.VITE_GOOGLE_CLIENT_ID && (
-            <div style={{ animation: 'fadeUp .6s var(--ease-out) 1.04s both' }}>
-              <div
-                ref={googleBtnRef}
-                id="google-signup-btn"
-                style={{ display: 'flex', justifyContent: 'center', minHeight: 44 }}
-              />
-            </div>
-          )}
-
-          <div style={{ animation: 'fadeUp .6s var(--ease-out) 1.10s both' }}>
+          <div style={{ animation: 'fadeUp .6s var(--ease-out) .84s both' }}>
             <Link to="/login" id="signup-login-link" className="ap-alt-btn">
               Sign in to existing account
             </Link>
           </div>
 
-          <p className="ap-legal" style={{ animation: 'fadeUp .6s var(--ease-out) 1.18s both' }}>
+          <p className="ap-legal" style={{ animation: 'fadeUp .6s var(--ease-out) .9s both' }}>
             By creating an account you agree to our <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>.
           </p>
         </div>
