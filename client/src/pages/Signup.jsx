@@ -87,7 +87,7 @@ export default function Signup() {
   const { login } = useAuth()
   const navigate  = useNavigate()
   const emailRef  = useRef(null)
-  const [form, setForm]       = useState({ name: '', email: '', password: '', confirmPassword: '' })
+  const [form, setForm]       = useState({ name: '', email: '', password: '' })
   const [loading, setLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
   const [errors, setErrors]   = useState({})
@@ -105,7 +105,7 @@ export default function Signup() {
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = 'Enter a valid email'
     if (!form.password) e.password = 'Password is required'
     else if (form.password.length < 6) e.password = 'At least 6 characters'
-    if (form.password !== form.confirmPassword) e.confirmPassword = 'Passwords do not match'
+
     return e
   }
 
@@ -361,28 +361,8 @@ export default function Signup() {
               )}
             </div>
 
-            {/* Confirm password */}
-            <div className="ap-field" style={{ animation: 'fadeUp .6s var(--ease-out) .8s both' }}>
-              <label className="ap-label" htmlFor="signup-confirm-password">Confirm password</label>
-              <input
-                id="signup-confirm-password"
-                type="password"
-                className={`ap-input ${errors.confirmPassword ? 'err' : ''}`}
-                placeholder="Re-enter your password"
-                value={form.confirmPassword}
-                onChange={set('confirmPassword')}
-                autoComplete="new-password"
-              />
-              {errors.confirmPassword && (
-                <span className="ap-field-err">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                  {errors.confirmPassword}
-                </span>
-              )}
-            </div>
-
             {/* Submit */}
-            <div style={{ animation: 'fadeUp .6s var(--ease-out) .92s both' }}>
+            <div style={{ animation: 'fadeUp .6s var(--ease-out) .8s both' }}>
               <button
                 type="submit"
                 id="signup-submit-btn"
